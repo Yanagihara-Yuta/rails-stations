@@ -1,6 +1,6 @@
 <%= link_to "Back", "/admin/movies" %>
 
-<%= form_tag( controller:"admin/movies" , action:"index") do |f| %>
+<%= form_tag( controller:"admin/movies" , action:"new") do |f| %>
     <div class="form_content">
         <p><%= @name %></p><input type="text" name="name">
     </div>
