@@ -31,7 +31,5 @@ class Admin::MoviesController < ApplicationController
     @is_showing = "上映中か"
   end
 
-  def create
-    render action: "create"
-  end
+
 end
