@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   namespace :admin do
     get '/movies', to: 'movies#index'
-    get '/movies/new', to: 'movies#create'
+    get '/movies/new', to: 'movies#new'
     post '/movies', to: 'movies#index'
   end
     get "/", to: "movies#index"
