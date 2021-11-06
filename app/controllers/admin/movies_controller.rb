@@ -14,7 +14,7 @@ class Admin::MoviesController < ApplicationController
       @sql_insert = Movie.new(name:name,year:year,description:description,image_url:image_url,is_showing:is_showing,created_at:created_at,updated_at:updated_at)
       # sql_insert.execute(name,year,description,image_url,is_showing,created_at,updated_at)
       if @sql_insert.save!
-        render action: 'create'
+        
       else
         flash.now[:alert] = 'メッセージを入力してください。'
         render action: 'create'
