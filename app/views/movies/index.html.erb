@@ -1,0 +1,11 @@
+<body>
+    <h1>Movies#index</h1>
+    <%@movies.each do | movie |%>
+        <div class ="movie_countent">
+            <%= image_tag "rails.png" %>
+            <p><%= movie.id %>,<%= movie.name %>,<%= movie.year %>,
+            <%= movie.description %>,<%= movie.image_url %>,<%= movie.is_showing %>,<%= movie.created_at %>,<%= movie.updated_at %></p>
+        </div>
+    <%end%>
+    <%= link_to "text", "/admin/movies" %>
+</body>
