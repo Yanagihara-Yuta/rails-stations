@@ -17,7 +17,7 @@ class Admin::MoviesController < ApplicationController
 
       else
         flash.now[:alert] = 'メッセージを入力してください。'
-        render action: 'create'
+        render action: 'new'
       end
     end
       @movies = Movie.all
