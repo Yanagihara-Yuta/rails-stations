@@ -20,7 +20,7 @@ class Admin::MoviesController < ApplicationController
         render action: 'new'
       end
     end
-      @movies = Movie.all
+    @movies = Movie.all
   end
 
   def new
