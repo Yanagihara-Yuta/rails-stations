@@ -1,5 +1,5 @@
-<h1>Admin::Movies#index</h1>
-<p>Find me in app/views/admin/movies/index.html.erb</p>
+<h1>Movie List,<%= Time.zone.now() %></h1>
+<%= link_to "create", "/admin/movies/new" %>
 <table>
 <tr>
 <th>ID</th>
@@ -13,7 +13,6 @@
 <th></th>
 </tr>
     <% @movies.each do | movie | %>
-        
     <tr>
         <td><%= movie.id %></td>
         <td><%= movie.name %></td>
@@ -26,7 +25,7 @@
             <% end %>
         </td>
         <td><%= movie.description %></td>
-        <td><%= image_tag movie.image_url %></td>
+        <td><%= movie.image_url %></td>
         <td><%= movie.created_at %></td>
         <td><%= movie.updated_at %></td>
         <td></td>
