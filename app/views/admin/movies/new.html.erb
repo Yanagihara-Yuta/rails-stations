@@ -1,20 +1,20 @@
 <%= link_to "Back", "/admin/movies" %>
 
-<%= form_tag( controller:"admin/movies" , action:"new") do |f| %>
+<%= form_tag( controller:"admin/movies" , action:"index") do |f| %>
     <div class="form_content">
-        <p><%= @name %></p><input type="text" name="name">
+        <p>タイトル</p><input type="text" name="name">
     </div>
     <div class="form_content">
-        <p><%= @year %></p><input type="text" name="year">
+        <p>公開年</p><input type="text" name="year">
     </div>
     <div class="form_content">
-        <p><%= @description %></p><textarea  name="description" id="" cols="30" rows="10"></textarea>
+        <p>概要</p><textarea  name="description" id="" cols="30" rows="10"></textarea>
     </div>
     <div class="form_content">
-        <p><%= @image_url %></p><input type="text" name="image_url">
+        <p>画像URL</p><input type="text" name="image_url">
     </div>
     <div class="form_content">
-        <p><%= @is_showing %></p>
+        <p>上映中か</p>
         <select name="is_showing" id="">
             <option value="1">上映中</option>
             <option value="0">上映予定</option>
