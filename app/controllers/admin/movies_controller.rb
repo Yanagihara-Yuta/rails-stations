@@ -2,7 +2,13 @@ class Admin::MoviesController < ApplicationController
     def index
         @title = "Management Page"
         @name = ""
-        if request.post?
+        @movies = Movie.all
+    end
+
+    def new
+
+    end
+    def create 
         name = params[:name]
         year = params[:year]
         description = params[:description]
@@ -14,18 +20,11 @@ class Admin::MoviesController < ApplicationController
         # sql_insert.execute(name,year,description,image_url,is_showing,created_at,updated_at)
             if @sql_insert.save
                 flash.now[:alert] = 'メッセージを入力した。'
-                render status: 302
+                redirect_to "index"
             else
                 flash.now[:alert] = 'メッセージを入力してください。'
                 render action: 'new' 
             end
-        end
-        @movies = Movie.all
     end
-
-    def new
-
-    end
-
 
 end
