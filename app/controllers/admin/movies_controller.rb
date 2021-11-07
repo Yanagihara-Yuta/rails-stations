@@ -15,6 +15,7 @@ class Admin::MoviesController < ApplicationController
       # sql_insert.execute(name,year,description,image_url,is_showing,created_at,updated_at)
       if @sql_insert.save
         redirect_to :action => 'index'
+        flash.now[:alert] = 'メッセージを入力した。'
       else
         flash.now[:alert] = 'メッセージを入力してください。'
         render action: 'new'

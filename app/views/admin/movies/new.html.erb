@@ -1,5 +1,5 @@
 <%= link_to "Back", "/admin/movies" %>
-
+<%= flash[:alert] %>
 <%= form_tag( controller:"admin/movies" , action:"index") do |f| %>
     <div class="form_content">
         <p>タイトル</p><input type="text" name="name">

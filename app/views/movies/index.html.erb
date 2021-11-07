@@ -1,5 +1,7 @@
 <body>
     <h1>Movies#index</h1>
+    <%= flash[:alert] %>
+
     <%@movies.each do | movie |%>
         <div class ="movie_countent">
             <%= image_tag "rails.png" %>
