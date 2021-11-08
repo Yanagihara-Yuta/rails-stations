@@ -23,7 +23,7 @@ class Admin::MoviesController < ApplicationController
                 render "index" ,:status => 302
             else
                 flash.now[:alert] = 'メッセージを入力してください。'
-                redirect_to admin_movies_new
+                redirect_to admin_movies_new ,:status => 302
             end
     end
 end
