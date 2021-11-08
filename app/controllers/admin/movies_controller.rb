@@ -17,7 +17,7 @@ class Admin::MoviesController < ApplicationController
                 redirect_to "/movies_index"
             else
                 flash[:alert] = 'メッセージを入力してください。'
-                redirect_to admin_movies_new_path
+                redirect_to admin_movies_new_path , status:200
             end
 
     end
