@@ -25,6 +25,5 @@ class Admin::MoviesController < ApplicationController
                 flash.now[:alert] = 'メッセージを入力してください。'
                 render "new" ,:status => 200
             end
-        Movie.count = 1
     end
 end
