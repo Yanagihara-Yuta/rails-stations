@@ -23,7 +23,7 @@ class Admin::MoviesController < ApplicationController
                 redirect_to admin_movies_path
             else
                 flash.now[:alert] = 'メッセージを入力してください。'
-                render "new"
+                redirect_to admin_movies_new_path
             end
     end
 end
