@@ -6,24 +6,19 @@ class Admin::MoviesController < ApplicationController
     end
 
     def new
-
+        @movie = Movie.new
     end
     def create 
-        name = params[:name]
-        year = params[:year]
-        description = params[:description]
-        image_url = params[:image_url]
-        is_showing = params[:is_showing]
-        created_at = Time.zone.now()
-        updated_at = Time.zone.now()
-        sql_insert = Movie.new(name:name,year:year,description:description,image_url:image_url,is_showing:is_showing,created_at:created_at,updated_at:updated_at)
+        params_create = params.require(:movie).permit(:name, :year, :is_showing, :description, :image_url)
+        @movie = Movie.create(params_create)
         # sql_insert.execute(name,year,description,image_url,is_showing,created_at,updated_at)
-            if sql_insert.save
+            if @movie.valid?
                 flash.now[:alert] = 'メッセージを入力した。'
                 redirect_to admin_movies_path
             else
                 flash.now[:alert] = 'メッセージを入力してください。'
-                redirect_to admin_movies_new_path, status: :ok
+                redirect_to admin_movies_new_path
             end
+
     end
 end

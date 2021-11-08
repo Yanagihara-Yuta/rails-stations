@@ -1,24 +1,23 @@
 <%= link_to "Back", "/admin/movies" %>
 <%= flash[:alert] %>
-<%= form_tag( controller:"admin/movies" , action:"create", status: :found) do |f| %>
-    <div class="form_content">
-        <p>タイトル</p><input type="text" name="name">
-    </div>
-    <div class="form_content">
-        <p>公開年</p><input type="text" name="year">
-    </div>
-    <div class="form_content">
-        <p>概要</p><textarea  name="description" id="" cols="30" rows="10"></textarea>
-    </div>
-    <div class="form_content">
-        <p>画像URL</p><input type="text" name="image_url">
-    </div>
-    <div class="form_content">
-        <p>上映中か</p>
-        <select name="is_showing" id="">
-            <option value="1">上映中</option>
-            <option value="0">上映予定</option>
-        </select>
-    </div>
-    <input type="submit" value="Save">
+<%= form_for([:admin, @movie]) do |f| %>
+    <%= f.label :name , "タイトル" %>
+    <%= f.text_field :name %>
+<br>
+    <%= f.label :year , "公開年" %>
+    <%= f.text_field :year %>
+<br>
+    <%= f.label :description , "概要" %>
+    <%= f.text_area :description, size: "50x10" %> 
+<br>
+    <%= f.label :image_url , "画像URL" %>
+    <%= f.text_field :image_url %>
+<br>
+    <%= f.label :is_showing , "上映中か" %>
+    <%= f.select :is_showing, {'上映中': 1, '上映予定': 0},{required: true } %>
+<br>
+    <%= f.hidden_field :created_at, :value => Time.zone.now() %>
+    <%= f.hidden_field :updated_at, :value => Time.zone.now() %>
+    
+    <%= f.submit "新規登録" %>
 <% end %>
