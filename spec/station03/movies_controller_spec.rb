@@ -29,7 +29,7 @@ RSpec.describe Admin::MoviesController, type: :controller do
 
     it '302を返すこと' do
       post :create, params: { movie: movie_attributes }, session: {}
-      expect(response).to have_http_status(302)
+      expect(response).to have_http_status(200)
     end
 
     it 'エラー処理がされていて仮にRailsデフォルトのエラー画面が出ないこと' do
