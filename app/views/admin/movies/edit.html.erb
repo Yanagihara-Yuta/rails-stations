@@ -1,0 +1,22 @@
+<%= link_to "Back", "/admin/movies" %>
+<%= flash[:alert] %>
+<%= form_for([:admin, @movie],url: {action: 'update'}) do |f| %>
+    <%= f.label :name , "タイトル" %>
+    <%= f.text_field :name , :value => @movie.name %>
+<br>
+    <%= f.label :year , "公開年" %>
+    <%= f.text_field :year , :value => @movie.year %>
+<br>
+    <%= f.label :description , "概要" %>
+    <%= f.text_area :description, size: "50x10" , :value => @movie.description %> 
+<br>
+    <%= f.label :image_url , "画像URL" %>
+    <%= f.text_field :image_url , :value => @movie.image_url %>
+<br>
+    <%= f.label :is_showing , "上映中か" %>
+    <%= f.select :is_showing, {'上映中': 1, '上映予定': 0},{required: true } %>
+<br>
+    <%= f.hidden_field :updated_at, :value => Time.zone.now() %>
+    
+    <%= f.submit "新規登録" %>
+<% end %>
