@@ -32,7 +32,7 @@ class Admin::MoviesController < ApplicationController
     
     def update
         @movie = Movie.find(params[:id])
-        params_update = params.require(:movie).permit(:name, :year, :is_showing, :description, :image_url, :updated_at)
+        params_update = params.require(:movie).permit(:name, :year, :is_showing, :description, :image_url)
         if @movie.update(params_update)
             flash.now[:alert] = 'メッセージを入力した。'
             redirect_to "/admin/movies"
