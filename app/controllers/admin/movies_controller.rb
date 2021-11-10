@@ -18,7 +18,7 @@ class Admin::MoviesController < ApplicationController
                 redirect_to "/admin/movies"
             else
                 flash[:alert] = 'メッセージを入力してください。'
-                redirect_to action: :index
+                redirect_to admin_movies_new_path , status:200
             end
     end
 # U機能
@@ -38,7 +38,7 @@ class Admin::MoviesController < ApplicationController
             redirect_to "/admin/movies"
         else
             flash[:alert] = 'メッセージを入力してください。'
-            redirect_to action: :index
+            redirect_to action: :edit,id:@movie.id
         end
             
     end
