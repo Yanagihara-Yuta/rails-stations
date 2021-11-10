@@ -1,6 +1,7 @@
 <%= link_to "Back", "/admin/movies" %>
 <%= flash[:alert] %>
 <%= form_for([:admin, @movie],url: {action: 'update'}) do |f| %>
+    <%= f.hidden_field :id, :value => @movie.id %>
     <%= f.label :name , "タイトル" %>
     <%= f.text_field :name , :value => @movie.name %>
 <br>
