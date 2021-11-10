@@ -31,15 +31,18 @@ class Admin::MoviesController < ApplicationController
     end
     
     def update
-        @movie = Movie.find(params[:id])
-        params_update = params.require(:movie).permit(:name, :year, :is_showing, :description, :image_url)
-        if @movie.update(params_update)
-            flash.now[:alert] = 'メッセージを入力した。'
+        if Movie.find_by(id: params[:id]) == nil
             redirect_to "/admin/movies"
         else
-            flash[:alert] = 'メッセージを入力してください。'
-            redirect_to action: :edit,id:@movie.id
-        end
-            
+            @movie = Movie.find(params[:id])
+            params_update = params.require(:movie).permit(:name, :year, :is_showing, :description, :image_url, :updated_at)
+            if @movie.update(params_update)
+                flash.now[:alert] = 'メッセージを入力した。'
+                redirect_to "/admin/movies"
+            else
+                flash[:alert] = 'メッセージを入力してください。'
+                redirect_to action: :edit,id:@movie.id
+            end
+        end  
     end
 end
