@@ -18,12 +18,13 @@ class Admin::MoviesController < ApplicationController
                 redirect_to "/admin/movies"
             else
                 flash[:alert] = 'メッセージを入力してください。'
-                redirect_to admin_movies_new_path , status:200
+                redirect_to action: :index
             end
     end
 # U機能
     def edit
         @movie = Movie.find(params[:id])
+
     end
     
     def update
