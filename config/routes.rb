@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     post '/movies' => 'movies#create'
     get 'movies/:id' => 'movies#edit'
     patch 'movies/:id' => 'movies#update'
+    put 'movies/:id' => 'movies#update'
   end
     get "/" => "movies#index"
     # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
