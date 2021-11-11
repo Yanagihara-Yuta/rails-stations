@@ -25,26 +25,37 @@ class Admin::MoviesController < ApplicationController
     end
 # U機能
     def edit
-        if Movie.find_by(id: params[:id]) == nil
-            redirect_to "/admin/movies"
-        else
-            @movie = Movie.find(params[:id])
-        end
+        id_saerch()
     end
     
     def update
+        id_saerch()
+        params_update = params.require(:movie).permit(:name, :year, :is_showing, :description, :image_url, :updated_at)
+        if @movie.update(id: params[:id])
+            flash.now[:alert] = 'メッセージを入力した。'
+            redirect_to admin_movies_path , status:200
+        else
+            flash[:alert] = 'メッセージを入力してください。'
+            redirect_to action: :edit,id:@movie.id 
+        end
+    end  
+    def destroy
+        id_saerch()
+        if @movie.find(id: params[:id]).destroy
+            flash.now[:alert] = '削除した。'
+            redirect_to admin_movies_path , status:200
+        else
+            flash[:alert] = '削除できなかった。'
+            redirect_to admin_movies_path
+        end
+    end
+
+    def id_saerch
         if Movie.find_by(id: params[:id]) == nil
             redirect_to "/admin/movies"
+            exit
         else
             @movie = Movie.find(params[:id])
-            params_update = params.require(:movie).permit(:name, :year, :is_showing, :description, :image_url, :updated_at)
-            if @movie.update(id: params[:id])
-                flash.now[:alert] = 'メッセージを入力した。'
-                redirect_to admin_movies_new_path , status:200
-            else
-                flash[:alert] = 'メッセージを入力してください。'
-                redirect_to action: :edit,id:@movie.id 
-            end
-        end  
+        end
     end
 end
