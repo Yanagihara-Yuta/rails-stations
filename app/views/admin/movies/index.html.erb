@@ -30,8 +30,12 @@
         <td><%= movie.created_at %></td>
         <td><%= movie.updated_at %></td>
         <td><a href="/admin/movies/<%= movie.id %>/edit">aaaa</a></td>
-        <td><a href="/admin/movies/<%= movie.id %>/destroy">aaaa</a></td>
-        <td><%= link_to "text", {action: destroy, id: :id} %></td>
+        <td><%= link_to '削除', "movies/#{movie.id}", method: :delete %></td>
+        <%
+=begin%>
+ <td><%= link_to "text", {action: destroy, id: :id} %></td> 
+<%
+=end%>
         </tr>
     <% end %>
 </table>

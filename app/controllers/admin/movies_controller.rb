@@ -22,6 +22,7 @@ class Admin::MoviesController < ApplicationController
             end
     end
     def show
+        
     end
 # U機能
     def edit
@@ -41,7 +42,7 @@ class Admin::MoviesController < ApplicationController
     end  
     def destroy
         id_saerch()
-        if @movie.find(id: params[:id]).destroy
+        if @movie.destroy
             flash.now[:alert] = '削除した。'
             redirect_to admin_movies_path , status:200
         else
