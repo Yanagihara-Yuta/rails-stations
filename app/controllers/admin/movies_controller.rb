@@ -23,11 +23,9 @@ class Admin::MoviesController < ApplicationController
     end
 # U機能
     def edit
-        if Movie.find_by(id: params[:id]) == nil
-            redirect_to "/admin/movies"
-        else
+
             @movie = Movie.find(params[:id])
-        end
+
     end
     
     def update
