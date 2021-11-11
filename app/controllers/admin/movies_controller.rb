@@ -21,6 +21,8 @@ class Admin::MoviesController < ApplicationController
                 redirect_to admin_movies_new_path , status:200
             end
     end
+    def show
+    end
 # U機能
     def edit
         if Movie.find_by(id: params[:id]) == nil
