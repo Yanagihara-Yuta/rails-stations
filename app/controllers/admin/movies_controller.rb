@@ -35,15 +35,13 @@ class Admin::MoviesController < ApplicationController
             redirect_to "/admin/movies"
         else
             @movie = Movie.find(params[:id])
-            # params_update = params.require(:movie).permit(:name, :year, :is_showing, :description, :image_url, :updated_at)
-            if @movie.update()
+            params_update = params.require(:movie).permit(:name, :year, :is_showing, :description, :image_url, :updated_at)
+            if @movie.update(params_update)
                 flash.now[:alert] = 'メッセージを入力した。'
-                redirect_to "/admin/movies"
+                redirect_to admin_movies_new_path , status:200
             else
                 flash[:alert] = 'メッセージを入力してください。'
-                # redirect_to action: :edit,id:@movie.id
-                redirect_to "/admin/movies"
-
+                redirect_to action: :edit,id:@movie.id
             end
         end  
     end
