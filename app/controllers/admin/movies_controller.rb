@@ -41,13 +41,18 @@ class Admin::MoviesController < ApplicationController
         end
     end  
     def destroy
-        id_saerch()
-        if @movie.destroy
-            flash.now[:alert] = '削除した。'
-            redirect_to admin_movies_path , status:200
+        if Movie.find_by(id: params[:id]) == nil
+            redirect_to "/admin/movies" , status: 400
+            exit
         else
-            flash[:alert] = '削除できなかった。'
-            redirect_to admin_movies_path
+            @movie = Movie.find(params[:id])
+            if @movie.destroy
+                flash.now[:alert] = '削除した。'
+                redirect_to admin_movies_path , status: 302
+            else
+                flash[:alert] = '削除できなかった。'
+                redirect_to admin_movies_path
+            end
         end
     end
 
