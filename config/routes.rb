@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
   namespace :admin do
-    resources :movies
+    get '/movies' => 'movies#index'
+    get '/movies/new' => 'movies#new'
+    post '/movies' => 'movies#create'
+    get 'movies/:id' => 'movies#edit'
+    patch 'movies/:id' => 'movies#update'
   end
-  resources :movies, only: [ :index ]
-
-  get '*path', to: 'application#rescue404'
+    get "/" => "movies#index"
     # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
