@@ -1,5 +1,22 @@
 <h1>Movie List,<%= Time.zone.now() %></h1>
 <%= link_to "new", "/admin/movies/new" %>
+<%= flash[:alert] %>
+<div class="search">
+    <%= form_tag("/admin/movies/search",:method => 'get') do %>
+    <label for="search">キーワード</label>
+    <%= text_field_tag :search %>
+    <label for="is_showing">すべて</label>
+    <%= radio_button_tag :is_showing, 'all' %>
+    <label for="is_showing">　上映中</label>
+    <%= radio_button_tag :is_showing, 1 %>
+    <label for="is_showing">　上映予定</label>
+    <%= radio_button_tag :is_showing, 0 %>
+    <%= submit_tag 'Search', :name => nil %>
+<% end %>
+</div>
+<div class="search_risult">
+    <h2>KeyWord:<%= @search_name %> , 上映状況:<%= @search_is_showing %></h2>
+</div>
 <table>
 <tr>
 <th>ID</th>
@@ -13,6 +30,9 @@
 <th></th>
 <th></th>
 </tr>
+<% if @movies == nil %>
+    <p>nil.</p>
+<% else %>
     <% @movies.each do | movie | %>
     <tr>
         <td><%= movie.id %></td>
@@ -29,13 +49,11 @@
         <td><%= movie.image_url %></td>
         <td><%= movie.created_at %></td>
         <td><%= movie.updated_at %></td>
-        <td><a href="/admin/movies/<%= movie.id %>/edit">aaaa</a></td>
-        <td><%= link_to '削除', "movies/#{movie.id}", method: :delete %></td>
-        <%
-=begin%>
- <td><%= link_to "text", {action: destroy, id: :id} %></td> 
-<%
-=end%>
-        </tr>
+        <td><%= link_to 'Edit', "/admin/movies/#{movie.id}/edit" %></td>
+        <td><%= link_to 'Delete', "/admin/movies/#{movie.id}", method: :delete %></td>
+    </tr>
     <% end %>
+<% end %>
 </table>
+<script>
+</script>

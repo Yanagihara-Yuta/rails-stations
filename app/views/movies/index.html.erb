@@ -1,13 +1,45 @@
-<body>
-    <h1>Movies#index</h1>
-    <%= flash[:alert] %>
-
-    <%@movies.each do | movie |%>
-        <div class ="movie_countent">
-            <%= image_tag "rails.png" %>
-            <p><%= movie.id %>,<%= movie.name %>,<%= movie.year %>,
-            <%= movie.description %>,<%= movie.image_url %>,<%= movie.is_showing %>,<%= movie.created_at %>,<%= movie.updated_at %></p>
+<header>
+    <h1>作品一覧</h1>
+    <div class="search-content">
+        <div class="search">
+            <%= form_tag("/movies/search",:method => 'get') do %>
+                <label for="search">キーワード</label>
+                <%= text_field_tag :search %>
+                <%= radio_button_tag :is_showing, 'all' %>
+                <label for="is_showing_all" class="radio-label">すべて</label>
+                <%= radio_button_tag :is_showing, 1 %>
+                <label for="is_showing_1" class="radio-label">上映中</label>
+                <%= radio_button_tag :is_showing, 0 %>
+                <label for="is_showing_0" class="radio-label">上映予定</label>
+                <%= submit_tag 'Search', :name => nil %>
+            <% end %>
         </div>
-    <%end%>
-    <%= link_to "text", "/admin/movies" %>
-</body>
+        <div class="search-risult">
+            <h2>キーワード：<%= @search_name %> , 上映状況：<%= @search_is_showing %></h2>
+        </div>
+    </div>
+</header>
+<% if @movies == nil %>
+    <p>作品はありません</p>
+<% else %>
+    <main>
+        <% @movies.each do | movie | %>
+            <div class="movie-content">
+                <img src="<%= movie.image_url %>" class="movie-img">
+            <p class="movie-name">作品名：<%= movie.name %></p>
+            <p class="movie-year">公開年：<%= movie.year %></p>
+                <% if movie.is_showing == true %>
+                    <div class="movie-showing-true movie-showing">
+                        <p>上映中</p>
+                    </div>
+                <% else %>
+                    <div class="movie-showing-false movie-showing">
+                        <p>上映予定</p>
+                    </div>
+                <% end %>
+            </div>
+        <% end %>
+    </main>
+<% end %>
+<script>
+</script>

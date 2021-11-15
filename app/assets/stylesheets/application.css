@@ -13,3 +13,63 @@
  *= require_tree .
  *= require_self
  */
+body {
+    padding: 12px;
+}
+header {
+    width: 100%;
+    height: 196px;
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-left: 36px;
+    border-bottom: 2px solid #000;
+    z-index: 3;
+}
+main {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 195px;
+    position: relative;
+    left: 50vw;
+    transform: translateX(-50%);
+}
+.movie-content {
+    width: 260px;
+    height: 392px;
+    margin: 12px;
+    border: 1px solid #000;
+    position: relative;
+}
+.movie-showing {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+.movie-showing-true {
+    background-color: rgb(102, 196, 102);
+}
+.movie-showing-false {
+    background-color: rgb(216, 172, 115);
+}
+.search input[type="radio"] {
+    width         : 23pt;
+    height        : 23pt;
+    vertical-align: top;
+    display       : none;
+  }
+  .search input[type="radio"] + label {
+    padding       : 0 4px;
+    border        : 2px solid rgba(127, 127, 0, 0.49);
+    border-radius : 5px;
+    background    : #ffffff;
+    cursor        : pointer;
+    transition    : .2s;
+  }
+  .search input[type="radio"]:checked + label {
+    background    : rgba(127, 127, 0, 0.49);
+  }
+  .search input[type="radio"]:not(:checked) + label:hover {
+    background    : rgba(127, 127, 0, 0.40);
+  }

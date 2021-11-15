@@ -1,6 +1,6 @@
 <%= link_to "Back", "/admin/movies" %>
 <%= flash[:alert] %>
-<%= form_for([:admin, @movie]) do |f| %>
+<%= form_for([:admin, @movie],url: {action: 'create'}) do |f| %>
     <%= f.label :name , "タイトル" %>
     <%= f.text_field :name %>
 <br>
