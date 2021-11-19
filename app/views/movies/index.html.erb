@@ -4,8 +4,9 @@
         <div class="search">
             <%= form_tag("/movies/search",:method => 'get') do %>
                 <label for="search">キーワード</label>
-                <%= text_field_tag :search %>
-                <%= radio_button_tag :is_showing, 'all' %>
+                <%= text_field_tag :search , @search_name_return%>
+                上映状況
+                <%= radio_button_tag :is_showing, 'all' ,:checked => true %>
                 <label for="is_showing_all" class="radio-label">すべて</label>
                 <%= radio_button_tag :is_showing, 1 %>
                 <label for="is_showing_1" class="radio-label">上映中</label>
@@ -19,27 +20,32 @@
         </div>
     </div>
 </header>
-<% if @movies == nil %>
-    <p>作品はありません</p>
-<% else %>
-    <main>
-        <% @movies.each do | movie | %>
-            <div class="movie-content">
-                <img src="<%= movie.image_url %>" class="movie-img">
-            <p class="movie-name">作品名：<%= movie.name %></p>
-            <p class="movie-year">公開年：<%= movie.year %></p>
-                <% if movie.is_showing == true %>
-                    <div class="movie-showing-true movie-showing">
-                        <p>上映中</p>
-                    </div>
-                <% else %>
-                    <div class="movie-showing-false movie-showing">
-                        <p>上映予定</p>
-                    </div>
-                <% end %>
-            </div>
+<main>
+    <div class="content">
+        <% if @movies.blank? %>
+            <p>作品はありません</p>
+        <% else %>
+            <% @movies.each do | movie | %>
+                <div class="movie-content">
+                    <img src="<%= movie.image_url %>" class="movie-img">
+                    <p class="movie-name">作品名：<%= movie.name %></p>
+                    <p class="movie-year">公開年：<%= movie.year %>年</p>
+                    <%= link_to("/movies") do %>
+                        <div class="movies-reserve">
+                            <p>予約/詳細</p>
+                        </div>
+                    <% end %>
+                    <% if movie.is_showing == true %>
+                        <div class="movie-showing-true movie-showing">
+                            <p>上映中</p>
+                        </div>
+                    <% else %>
+                        <div class="movie-showing-false movie-showing">
+                            <p>上映予定</p>
+                        </div>
+                    <% end %>
+                </div>
+            <% end %>
         <% end %>
-    </main>
-<% end %>
-<script>
-</script>
+    </div>
+</main>

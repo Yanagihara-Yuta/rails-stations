@@ -27,7 +27,7 @@ header {
     border-bottom: 2px solid #000;
     z-index: 3;
 }
-main {
+.content {
     display: flex;
     flex-wrap: wrap;
     padding-top: 195px;
@@ -42,8 +42,11 @@ main {
     border: 1px solid #000;
     position: relative;
 }
+
 .movie-showing {
     width: 100%;
+    padding-left: 0;
+    text-align: center;
     position: absolute;
     bottom: 0;
 }
@@ -72,4 +75,13 @@ main {
   }
   .search input[type="radio"]:not(:checked) + label:hover {
     background    : rgba(127, 127, 0, 0.40);
+  }
+  .movies-reserve {
+    width: 100%;
+    height: 20px;
+    background-color: antiquewhite;
+  }
+  .search input[type="submit"] {
+      margin-left: 24px;
+      
   }

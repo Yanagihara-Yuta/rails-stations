@@ -5,6 +5,7 @@ class Admin::MoviesController < ApplicationController
         @title = "Management Page"
         @name = ""
         @movies = Movie.all
+        @search_name = ""
     end
 # C機能
     def new
@@ -56,42 +57,40 @@ class Admin::MoviesController < ApplicationController
         end
     end
 # 検索
-    def search 
-        @search_name = params[:search]
-        @search_is_showing = params[:is_showing]
-        # --------------------------------------------------
-        #   
-        # 
-        # --------------------------------------------------
-        if @search_is_showing == "all"
-            if @search_name == ""
-                @search_name = "指定なし"
-                @movies = Movie.all
-            else
-                @movies = Movie.where(['name LIKE ?', "%#{@search_name}%"]).or(Movie.where(['description LIKE ?', "%#{@search_name}%"]))
-            end
-            @search_is_showing = "すべて"
+def search 
+    @search_name = params[:search]
+    @search_is_showing = params[:is_showing]
+    if @search_is_showing == "all" || @search_is_showing == nil
+        if @search_name == ""
+            @movies = Movie.all
         else
-            if @search_name == ""
-                @search_name = "指定なし"
-                @movies = Movie.where(is_showing: @search_is_showing)
+            @movies = Movie.where(['name LIKE ?', "%#{@search_name}%"]).or(Movie.where(['description LIKE ?', "%#{@search_name}%"]))
+        end
+        @search_is_showing = "すべて"
+    else
+        if @search_name == ""
+            @movies = Movie.where(is_showing: @search_is_showing)
+        else
+            @movies = Movie.where(is_showing: @search_is_showing).where(['name LIKE ?', "%#{@search_name}%"]).or(Movie.where(['description LIKE ?', "%#{@search_name}%"]))
+        end
+        case @search_is_showing
+            when "1" then
+                @search_is_showing = "上映中"
+            when "0" then
+                @search_is_showing = "上映予定"
             else
-                @movies = Movie.where(is_showing: @search_is_showing).where(['name LIKE ?', "%#{@search_name}%"]).or(Movie.where(['description LIKE ?', "%#{@search_name}%"]))
-            end
-            case @search_is_showing
-                when "1" then
-                    @search_is_showing = "上映中"
-                when "0" then
-                    @search_is_showing = "上映予定"
-                else
-                    @search_is_showing = "想定外のエラー"
-            end
+                @search_is_showing = "想定外のエラー"
         end
-        if @search_name != "指定なし"
-            @search_name = '" ' + @search_name + ' "' 
-        end
-        render :index
     end
+    if @search_name == ""
+        @search_name = "指定なし"
+        @search_name_return = ""
+    else
+        @search_name_return = @search_name
+    end
+    render :index
+end
+
 
     def id_saerch
         if Movie.find_by(id: params[:id]) == nil

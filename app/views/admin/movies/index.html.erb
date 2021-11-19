@@ -1,59 +1,64 @@
-<h1>Movie List,<%= Time.zone.now() %></h1>
-<%= link_to "new", "/admin/movies/new" %>
-<%= flash[:alert] %>
-<div class="search">
-    <%= form_tag("/admin/movies/search",:method => 'get') do %>
-    <label for="search">キーワード</label>
-    <%= text_field_tag :search %>
-    <label for="is_showing">すべて</label>
-    <%= radio_button_tag :is_showing, 'all' %>
-    <label for="is_showing">　上映中</label>
-    <%= radio_button_tag :is_showing, 1 %>
-    <label for="is_showing">　上映予定</label>
-    <%= radio_button_tag :is_showing, 0 %>
-    <%= submit_tag 'Search', :name => nil %>
-<% end %>
-</div>
-<div class="search_risult">
-    <h2>KeyWord:<%= @search_name %> , 上映状況:<%= @search_is_showing %></h2>
-</div>
-<table>
-<tr>
-<th>ID</th>
-<th>映画タイトル</th>
-<th>公開年</th>
-<th>上映中か</th>
-<th>概要</th>
-<th>画像URL</th>
-<th>作成日時</th>
-<th>更新日時</th>
-<th></th>
-<th></th>
-</tr>
-<% if @movies == nil %>
-    <p>nil.</p>
-<% else %>
-    <% @movies.each do | movie | %>
-    <tr>
-        <td><%= movie.id %></td>
-        <td><%= movie.name %></td>
-        <td><%= movie.year %></td>
-        <td>
-            <% if movie.is_showing == true %>
-                上映中
-            <% else %>
-                上映予定
+<header>
+    <h1>作品管理</h1>
+    <%= link_to 'New', "/admin/movies/new" %>
+    <div class="search-content">
+        <div class="search">
+            <%= form_tag("/admin/movies/search",:method => 'get') do %>
+                <label for="search">キーワード</label>
+                <%= text_field_tag :search , @search_name_return%>
+                <%= radio_button_tag :is_showing, 'all' ,:checked => true %>
+                <label for="is_showing_all" class="radio-label">すべて</label>
+                <%= radio_button_tag :is_showing, 1 %>
+                <label for="is_showing_1" class="radio-label">上映中</label>
+                <%= radio_button_tag :is_showing, 0 %>
+                <label for="is_showing_0" class="radio-label">上映予定</label>
+                <%= submit_tag 'Search', :name => nil %>
             <% end %>
-        </td>
-        <td><%= movie.description %></td>
-        <td><%= movie.image_url %></td>
-        <td><%= movie.created_at %></td>
-        <td><%= movie.updated_at %></td>
-        <td><%= link_to 'Edit', "/admin/movies/#{movie.id}/edit" %></td>
-        <td><%= link_to 'Delete', "/admin/movies/#{movie.id}", method: :delete %></td>
+        </div>
+        <div class="search-risult">
+            <h2>キーワード：<%= @search_name %> , 上映状況：<%= @search_is_showing %></h2>
+        </div>
+    </div>
+</header>
+<main>
+    <table>
+    <tr>
+    <th>ID</th>
+    <th>映画タイトル</th>
+    <th>公開年</th>
+    <th>上映中か</th>
+    <th>概要</th>
+    <th>画像URL</th>
+    <th>作成日時</th>
+    <th>更新日時</th>
+    <th></th>
+    <th></th>
     </tr>
+    <% if @movies == nil %>
+        <p>nil.</p>
+    <% else %>
+        <% @movies.each do | movie | %>
+        <tr>
+            <td><%= movie.id %></td>
+            <td><%= movie.name %></td>
+            <td><%= movie.year %></td>
+            <td>
+                <% if movie.is_showing == true %>
+                    上映中
+                <% else %>
+                    上映予定
+                <% end %>
+            </td>
+            <td><%= movie.description %></td>
+            <td><%= movie.image_url %></td>
+            <td><%= movie.created_at %></td>
+            <td><%= movie.updated_at %></td>
+            <td><%= link_to 'Edit', "/admin/movies/#{movie.id}/edit" %></td>
+            <td><%= link_to 'Delete', "/admin/movies/#{movie.id}", method: :delete %></td>
+        </tr>
+        <% end %>
     <% end %>
-<% end %>
-</table>
+    </table>
+</main>
 <script>
 </script>

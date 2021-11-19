@@ -15,7 +15,7 @@
     <%= f.text_field :image_url , :value => @movie.image_url %>
 <br>
     <%= f.label :is_showing , "上映中か" %>
-    <%= f.select :is_showing, {'上映中': 1, '上映予定': 0},{required: true } %>
+    <%= f.select :is_showing, {'上映中': 1, '上映予定': 0},{required: true } , :value => @movie.is_showing %>
 <br>
     <%= f.hidden_field :updated_at, :value => Time.zone.now() %>
     
