@@ -1,5 +1,5 @@
 class SheetsController < ApplicationController
-    def sheets
+    def index
         @sheet = Sheet.all
     end
 end

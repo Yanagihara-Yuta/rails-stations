@@ -6,6 +6,6 @@ Rails.application.routes.draw do
     get "/movies" => "movies#index"
     get "/movies/search" => "movies#search"
     get "/movies/sheets" => "movies#sheets"
-    get "/sheets" => "sheets#sheets"
+    get "/sheets" => "sheets#index"
     # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
