@@ -1,1 +1,31 @@
-<%= @sheet %>
+<main>
+    <table>
+        <tr>
+            <th></th>
+            <th></th>
+            <th>スクリーン</th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        <% for i in 0..@row.length do %>
+            <tr>
+            <%= @row[i] %>
+
+            <% row = @row[i] %>
+            <% @sheet_select_row = Sheet.where(row: row) %>
+            <% @sheet_select_row.each do | sheet | %>
+            <th><%= sheet.row %>-<%= sheet.column %></th>
+            <% end %> 
+
+            </tr>
+        <% end %>
+        
+    </table>
+</main>
