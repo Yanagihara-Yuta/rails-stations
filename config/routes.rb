@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   end
     get "/movies" => "movies#index"
     get "/movies/search" => "movies#search"
-    get "/movies/:id" => "schedules#index"
+    get "/movies/:id" => "schedules#show"
     get "/sheets" => "sheets#index"
 
     # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
