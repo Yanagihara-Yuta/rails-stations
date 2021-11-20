@@ -1,0 +1,13 @@
+<div class="content">
+<%= @id %>
+    <% if @schedules == nil %>
+        <p>nil.</p>
+    <% else %>
+        <% @schedules.each do | schedule | %>
+            <div>
+                <p><%= schedule.start_time %></p><br>
+                <p><%= schedule.end_time %></p>
+            </div>
+        <% end %>
+    <% end %>
+</div>

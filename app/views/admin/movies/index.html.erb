@@ -20,45 +20,45 @@
         </div>
     </div>
 </header>
-<main>
-    <table>
-    <tr>
-    <th>ID</th>
-    <th>映画タイトル</th>
-    <th>公開年</th>
-    <th>上映中か</th>
-    <th>概要</th>
-    <th>画像URL</th>
-    <th>作成日時</th>
-    <th>更新日時</th>
-    <th></th>
-    <th></th>
-    </tr>
-    <% if @movies == nil %>
-        <p>nil.</p>
-    <% else %>
-        <% @movies.each do | movie | %>
+    <div class="content">
+        <table>
         <tr>
-            <td><%= movie.id %></td>
-            <td><%= movie.name %></td>
-            <td><%= movie.year %></td>
-            <td>
-                <% if movie.is_showing == true %>
-                    上映中
-                <% else %>
-                    上映予定
-                <% end %>
-            </td>
-            <td><%= movie.description %></td>
-            <td><%= movie.image_url %></td>
-            <td><%= movie.created_at %></td>
-            <td><%= movie.updated_at %></td>
-            <td><%= link_to 'Edit', "/admin/movies/#{movie.id}/edit" %></td>
-            <td><%= link_to 'Delete', "/admin/movies/#{movie.id}", method: :delete %></td>
+        <th>ID</th>
+        <th>映画タイトル</th>
+        <th>公開年</th>
+        <th>上映中か</th>
+        <th>概要</th>
+        <th>画像URL</th>
+        <th>作成日時</th>
+        <th>更新日時</th>
+        <th></th>
+        <th></th>
         </tr>
+        <% if @movies == nil %>
+            <p>nil.</p>
+        <% else %>
+            <% @movies.each do | movie | %>
+            <tr>
+                <td><%= movie.id %></td>
+                <td><%= movie.name %></td>
+                <td><%= movie.year %></td>
+                <td>
+                    <% if movie.is_showing == true %>
+                        上映中
+                    <% else %>
+                        上映予定
+                    <% end %>
+                </td>
+                <td><%= movie.description %></td>
+                <td><%= movie.image_url %></td>
+                <td><%= movie.created_at %></td>
+                <td><%= movie.updated_at %></td>
+                <td><%= link_to 'Edit', "/admin/movies/#{movie.id}/edit" %></td>
+                <td><%= link_to 'Delete', "/admin/movies/#{movie.id}", method: :delete %></td>
+            </tr>
+            <% end %>
         <% end %>
-    <% end %>
-    </table>
-</main>
+        </table>
+    </div>
 <script>
 </script>

@@ -71,7 +71,8 @@ def search
         if @search_name == ""
             @movies = Movie.where(is_showing: @search_is_showing)
         else
-            @movies = Movie.where(is_showing: @search_is_showing).where(['name LIKE ?', "%#{@search_name}%"]).or(Movie.where(['description LIKE ?', "%#{@search_name}%"]))
+            @movies = Movie.where(is_showing: @search_is_showing)
+            @movies = @movies.where(['name LIKE ?', "%#{@search_name}%"]).or(@movies.where(['description LIKE ?', "%#{@search_name}%"]))
         end
         case @search_is_showing
             when "1" then

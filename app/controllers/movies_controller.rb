@@ -36,8 +36,9 @@ class MoviesController < ApplicationController
                 @movies = Movie.where(is_showing: @search_is_showing)
                 # @test = Movie.where(is_showing: @search_is_showing)の方がコードの保守的に良い
             else
-                @movies = Movie.where(is_showing: @search_is_showing).where('name LIKE ?', "%#{@search_name}%").or(Movie.where('description LIKE ?', "%#{@search_name}%"))
-            end
+                @movies = Movie.where(is_showing: @search_is_showing)
+                @movies = @movies.where(['name LIKE ?', "%#{@search_name}%"]).or(@movies.where(['description LIKE ?', "%#{@search_name}%"]))
+                end
             # @search_is_showingをviewに表示させる準備
             case @search_is_showing
                 when "1" then

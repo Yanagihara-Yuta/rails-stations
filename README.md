@@ -251,3 +251,13 @@ docker compose exec web rspec spec/stationXX
 error Command failed with exit code 1.
 info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
 ```
++------------+----------+------+-----+-------------------+-------------------+
+| Field      | Type     | Null | Key | Default           | Extra             |
++------------+----------+------+-----+-------------------+-------------------+
+| id         | int      | NO   | PRI | NULL              | auto_increment    |
+| movie_id   | int      | NO   | MUL | NULL              |                   |
+| start_time | time     | NO   |     | NULL              |                   |
+| end_time   | time     | NO   |     | NULL              |                   |
+| created_at | datetime | NO   |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
+| updated_at | datetime | NO   |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
++------------+----------+------+-----+-------------------+-------------------+
