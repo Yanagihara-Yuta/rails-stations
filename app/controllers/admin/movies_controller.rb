@@ -24,9 +24,7 @@ class Admin::MoviesController < ApplicationController
             end
     end
     def show
-        @id = params[:movies_id]
-        # @schedules = Schedule.find_by(movie_id: @id)
-        @schedules = Schedule.all
+        @id = params[:id]
     end
 # U機能
     def edit

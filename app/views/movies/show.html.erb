@@ -1,5 +1,6 @@
 <div class="content">
-<% @schedules = Schedule.all %>
+<% @id = params[:id] %>
+<% @schedules = Schedule.where(movie_id: @id) %>
     <% if @schedules == nil %>
         <p>nil.</p>
     <% else %>
@@ -9,5 +10,5 @@
                 <p><%= schedule.end_time %></p>
             </div>
         <% end %>
-    <% end %>
+    <% end %> 
 </div>
