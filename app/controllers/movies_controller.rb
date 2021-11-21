@@ -62,6 +62,10 @@ class MoviesController < ApplicationController
         end
         render :index
     end
-
+    
+    def show
+        @id = params[:id]
+        @movie = Movie.find_by(id: @id)
+    end
 end
 # コメント：処理の意図を詳しく書く　　処理の説明はあまりいらない

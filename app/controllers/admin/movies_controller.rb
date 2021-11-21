@@ -23,10 +23,7 @@ class Admin::MoviesController < ApplicationController
                 redirect_to admin_movies_new_path , status:200
             end
     end
-    def show
-        @id = params[:id]
-        @movie = Movie.find_by(id: @id)
-    end
+
 # U機能
     def edit
         id_saerch()
@@ -94,6 +91,16 @@ class Admin::MoviesController < ApplicationController
         end
         render :index
     end
+# スケジュール
+    def schedule
+        @movie = Movie.all
+    end
+
+    def schedule_new
+        @id = params[:id]
+        @schedule = Schedule.new
+    end
+
     def id_saerch
         if Movie.find_by(id: params[:id]) == nil
             redirect_to admin_movies_path , status:200

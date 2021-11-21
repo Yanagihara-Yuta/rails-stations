@@ -1,0 +1,19 @@
+<header>
+</header>
+<div class="content">
+<% if @movie == nil %>
+    <h2>該当なし</h2>
+<% else %>
+    <% @movie.each do | movie | %>
+        <% @schedules = Schedule.where(movie_id: movie.id) %>
+        <div class="schedule-content">
+        <h2>ID:<%= movie.id %><br>Name:<%= movie.name %></h2>
+        <% @schedules.each do | schedule | %>
+            <p>開始:<%= schedule.start_time %><br>
+            終了:<%= schedule.end_time %></p>
+        <% end %>
+        <%= link_to 'Schedule', "admin/movies/#{movie.id}/schedules/new" %>
+
+    <% end %>
+<% end %>
+</div>
