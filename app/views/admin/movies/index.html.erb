@@ -56,6 +56,16 @@
                 <td><%= link_to 'Edit', "/admin/movies/#{movie.id}/edit" %></td>
                 <td><%= link_to 'Delete', "/admin/movies/#{movie.id}", method: :delete %></td>
             </tr>
+            <% @schedules = Schedule.where(movie_id: movie.id) %>
+            <% @schedules.each do | schedule | %>
+                <tr>
+                    <th>上映開始</th>
+                    <th><%= schedule.start_time %></th>
+                    <th>上映終了</th>
+                    <th><%= schedule.end_time %></th>
+                </tr>
+            <% end %>
+
             <% end %>
         <% end %>
         </table>
