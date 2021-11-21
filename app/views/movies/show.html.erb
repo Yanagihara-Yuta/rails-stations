@@ -1,6 +1,14 @@
+<header>
+    <% @id = params[:id] %>
+    <% @movie = Movie.find_by(id: @id) %>
+    <h2><%= @movie.name %>,<%=@movie.year%></h2>
+    <p><%= @movie.description %></p>
+    <img src="<%= @movie.image_url %>" class="movie-img">
+
+</header>
 <div class="content">
-<% @id = params[:id] %>
-<% @schedules = Schedule.where(movie_id: @id) %>
+
+    <% @schedules = Schedule.where(movie_id: @id) %>
     <% if @schedules == nil %>
         <p>nil.</p>
     <% else %>

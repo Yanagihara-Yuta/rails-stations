@@ -25,6 +25,7 @@ class Admin::MoviesController < ApplicationController
     end
     def show
         @id = params[:id]
+        @movie = Movie.find_by(id: @id)
     end
 # U機能
     def edit
