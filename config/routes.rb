@@ -5,10 +5,9 @@ Rails.application.routes.draw do
     get "schedules" => "movies#schedule"
     get "movies/:id/schedules/new" => "movies#schedule_new"
     post "movies/:id/schedules/new" => "movies#schedule_new"
-    get "movies/:id/schedules/edit" => "movies#schedule_edit"
-    patch "movies/:id/schedules/update" => "movies#schedule_update"
 
   end
+  resources :schedules, only: [ :edit, :update,:destroy, ]
     get "/movies" => "movies#index"
     get "/movies/search" => "movies#search"
     get "/movies/:id" => "movies#show"
