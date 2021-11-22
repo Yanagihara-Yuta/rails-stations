@@ -97,9 +97,50 @@ class Admin::MoviesController < ApplicationController
     end
 
     def schedule_new
-        @id = params[:id]
-        @schedule = Schedule.new
+        if request.post?
+            params_schedule = params.require(:schedule).permit(:movie_id , :start_time , :end_time)
+            @schedule = Schedule.new(params_schedule)
+            if @schedule.save
+                redirect_to action: :index
+            else
+                redirect_to action: :schedule_new,id:params[:id]
+            end
+        else
+            @id = params[:id]
+            @schedule = Schedule.new
+            @movie = Movie.find_by(id: @id)
+        end
     end
+
+    def schedule_edit
+        id_saerch_schedule()
+        @movie = Movie.find_by(id: @schedule.movie_id)
+    end
+
+    def schedule_update
+        @schedule = Schedule.find_by(id: params[:id])
+        params_schedule = params.require(:schedule).permit( :start_time , :end_time , :updated_at)
+        if @schedule.update(params_schedule)
+            redirect_to action: :index
+        else
+            redirect_to action: :schedule_edit,id:params[:id]
+        end
+    end
+
+
+
+
+
+    
+    def id_saerch_schedule
+        if Schedule.find_by(id: params[:id]) == nil
+            redirect_to admin_movies_path , status:200
+            exit
+        else
+            @schedule = Schedule.find_by(id: params[:id])
+        end
+    end
+
 
     def id_saerch
         if Movie.find_by(id: params[:id]) == nil

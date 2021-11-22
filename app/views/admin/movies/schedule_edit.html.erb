@@ -1,0 +1,12 @@
+<header>
+<h2><%= @movie.name %>の上映時間変更</h2>
+<%= link_to 'Back', "/admin/movies" %>
+</header>
+<div class="content">
+    <%= form_for([:admin, @schedule],url: {action: 'schedule_update'}) do |f| %>
+        <%= f.hidden_field :updated_at, :value => Time.zone.now() %>
+        開始時間：<%= f.datetime_select :start_time , {use_month_numbers: true} , :value => @schedule.start_time %><br>
+        終了時間：<%= f.datetime_select :end_time , {use_month_numbers: true} , :value => @schedule.end_time %><br>
+        <%= f.submit "変更" %>
+    <% end %>
+</div>

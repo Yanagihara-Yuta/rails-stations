@@ -50,21 +50,26 @@
                     <% end %>
                 </td>
                 <td><%= movie.description %></td>
-                <td><%= movie.image_url %></td>
+                <td><img src="<%= movie.image_url %>" class="movie-img"></td>
                 <td><%= movie.created_at %></td>
                 <td><%= movie.updated_at %></td>
                 <td><%= link_to 'Edit', "/admin/movies/#{movie.id}/edit" %></td>
                 <td><%= link_to 'Delete', "/admin/movies/#{movie.id}", method: :delete %></td>
+                <th><%= link_to '上映時間追加', "movies/#{movie.id}/schedules/new" %></th>
             </tr>
             <% @schedules = Schedule.where(movie_id: movie.id) %>
-            <% @schedules.each do | schedule | %>
-                <tr>
-                    <th>上映開始</th>
-                    <th><%= schedule.start_time %></th>
-                    <th>上映終了</th>
-                    <th><%= schedule.end_time %></th>
-                </tr>
-            <% end %>
+            <tr>
+                <th colspan="3">上映開始</th>
+                <th colspan="3">上映終了</th>
+                <th colspan="4">各コマンド</th>
+            </tr>
+                <% @schedules.each do | schedule | %>
+                    <tr>
+                        <th colspan="3"><%= schedule.start_time %></th>
+                        <th colspan="3"><%= schedule.end_time %></th>
+                        <th colspan="2"><%= link_to "上映時間変更" , "movies/#{schedule.id}/schedules/edit" %></th>
+                    </tr>
+                <% end %>
 
             <% end %>
         <% end %>

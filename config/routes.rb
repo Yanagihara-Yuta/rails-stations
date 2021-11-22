@@ -4,6 +4,10 @@ Rails.application.routes.draw do
     get "movies/search" => "movies#search"
     get "schedules" => "movies#schedule"
     get "movies/:id/schedules/new" => "movies#schedule_new"
+    post "movies/:id/schedules/new" => "movies#schedule_new"
+    get "movies/:id/schedules/edit" => "movies#schedule_edit"
+    patch "movies/:id/schedules/update" => "movies#schedule_update"
+
   end
     get "/movies" => "movies#index"
     get "/movies/search" => "movies#search"

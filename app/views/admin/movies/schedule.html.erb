@@ -12,7 +12,7 @@
             <p>開始:<%= schedule.start_time %><br>
             終了:<%= schedule.end_time %></p>
         <% end %>
-        <%= link_to 'Schedule', "admin/movies/#{movie.id}/schedules/new" %>
+        <%= link_to 'Schedule', "movies/#{movie.id}/schedules/new" %>
 
     <% end %>
 <% end %>
