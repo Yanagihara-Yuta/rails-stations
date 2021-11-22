@@ -21,7 +21,7 @@ class SchedulesController < ApplicationController
             @schedule = Schedule.find_by(id: params[:id])
             params_schedule = params.require(:schedule).permit( :start_time , :end_time , :updated_at)
             if @schedule.update(params_schedule)
-                redirect_to "adamin/movies"
+                redirect_to "/admin/movies"
             else
                 redirect_to action: :edit,id:params[:id]
             end
@@ -31,10 +31,8 @@ class SchedulesController < ApplicationController
     def destroy
         id_saerch_schedule()
         if @schedule.destroy
-            flash.now[:alert] = '削除した。'
             redirect_to admin_movies_path , status:302
         else
-            flash[:alert] = '削除できなかった。'
             redirect_to admin_movies_path
         end
     end
