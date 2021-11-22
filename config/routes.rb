@@ -4,13 +4,14 @@ Rails.application.routes.draw do
   end
   namespace :admin do
     resources :movies, only: [:index, :new, :create, :edit, :update,:destroy, ]
-    resources :schedules, only: [ :edit, :update,:destroy, ]
     get "movies/search" => "movies#search"
     get "schedules" => "movies#schedule"
     get "movies/:id/schedules/new" => "movies#schedule_new"
     post "movies/:id/schedules/new" => "movies#schedule_new"
 
   end
+  resources :schedules, only: [ :edit, :update,:destroy, ]
+
     get "/movies" => "movies#index"
     get "/movies/search" => "movies#search"
     get "/movies/:id" => "movies#show"
