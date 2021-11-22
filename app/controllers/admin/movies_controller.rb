@@ -112,7 +112,6 @@ class Admin::MoviesController < ApplicationController
         end
     end
 
-    
 
     def id_saerch
         if Movie.find_by(id: params[:id]) == nil
