@@ -12,7 +12,7 @@ RSpec.describe SchedulesController, type: :controller do
     end
 
     it 'フォーム送信でPUT /schedule/:id に送信されること' do
-      expect(response.body).to include('action="/admin/schedules/')
+      expect(response.body).to include('action="/schedules/')
     end
   end
 
