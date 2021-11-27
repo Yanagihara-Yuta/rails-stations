@@ -10,8 +10,9 @@ Rails.application.routes.draw do
     post "movies/:id/schedules/new" => "movies#schedule_new"
 
   end
-  resources :schedules, only: [ :edit, :update,:destroy, ]
-
+    resources :schedules, only: [ :edit, :update,:destroy, ]
+    get "/movies/:movie_id/schedules/:schedule_id/reservations/new" => "reservations#new"
+    get "/movies/:movie_id/schedules" => "movies#show"
     get "/movies" => "movies#index"
     get "/movies/search" => "movies#search"
     get "/movies/:id" => "movies#show"

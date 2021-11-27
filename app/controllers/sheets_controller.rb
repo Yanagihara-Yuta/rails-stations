@@ -4,6 +4,5 @@ class SheetsController < ApplicationController
         @column = 5
         @row = ["a","b","c"]
         @leg = @sheets.length
-        
     end
 end

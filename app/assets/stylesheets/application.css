@@ -85,3 +85,9 @@ header {
       margin-left: 24px;
       
   }
+  .show-header-image {
+    position: absolute;
+    top: 0;
+    left: 65%;
+    /* 後で変える */
+  }

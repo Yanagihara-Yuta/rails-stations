@@ -1,21 +1,25 @@
 <header class="show_header">
-    <% @id = params[:id] %>
-    <% @movie = Movie.find_by(id: @id) %>
-    <h2><%= @movie.name %>,<%=@movie.year%></h2>
-    <p><%= @movie.description %></p>
-    <img src="<%= @movie.image_url %>" class="movie-img">
+    <div class="show-header">
+        <h2>作品名：<%= @movies.name %></h2>
+        <h2>公開年：<%= @movies.year %></h2>
+        <p>概要：<%= @movies.description %></p>
+        <div class="show-header-image">
+            <img src="<%= @movies.image_url %>">
+        </div>
+    </div>
 </header>
 <div class="content">
-
-    <% @schedules = Schedule.where(movie_id: @id) %>
-    <% if @schedules == nil %>
+    <% if @schedule == nil %>
         <p>nil.</p>
     <% else %>
-        <% @schedules.each do | schedule | %>
-            <div>
-                <p><%= schedule.start_time %></p><br>
-                <p><%= schedule.end_time %></p>
-            </div>
+        <% @schedule.each do | schedule | %>
+            <%= link_to("/movies/#{@movies.id}/schedules/#{schedule.id}/reservations/new") do %>
+                <div>
+                    <p>上映開始：<%= schedule.start_time %></p><br>
+                    <p>上映終了：<%= schedule.end_time %></p>
+                    予約する
+                </div>
+            <% end %>
         <% end %>
     <% end %> 
 </div>
