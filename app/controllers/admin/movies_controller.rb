@@ -24,6 +24,10 @@ class Admin::MoviesController < ApplicationController
             end
     end
 
+    def show
+        id_saerch()
+    end
+
 # U機能
     def edit
         id_saerch()

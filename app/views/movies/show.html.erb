@@ -12,7 +12,9 @@
     <% if @schedule == nil %>
         <p>nil.</p>
     <% else %>
-            <%= form_tag("/movies/#{@movie.id}/schedules/:schedule_id/reservations/new",:method => 'get') do %>
+            <%
+=begin%>
+ <%= form_tag("/movies/#{@movies.id}/schedules/:schedule_id/reservations/new",:method => 'get') do %>
                 <select name="start_time">
                     <% @schedule.each do | schedule | %>
                         <option value="<%= schedule.start_time %>"><%= schedule.start_time %></option>
@@ -20,11 +22,11 @@
                 </select>
                 <%= submit_tag '座席を予約する', :name => nil %>
                 <button>座席を予約する</button>
-            <% end %>
-        <%
-=begin%>
+            <% end %> 
+<%
+=end%>
  <% @schedule.each do | schedule | %>
-            <%= link_to("/movies/#{@movies.id}/schedules/#{schedule.id}/reservations/new") do %>
+            <%= link_to("/movies/#{@movies.id}/schedules/#{schedule.id}/sheets") do %>
                 <div>
                     <p>上映開始：<%= schedule.start_time %></p><br>
                     <p>上映終了：<%= schedule.end_time %></p>
@@ -32,7 +34,6 @@
                 </div>
             <% end %>
         <% end %> 
-<%
-=end%>
+
     <% end %> 
 </div>
