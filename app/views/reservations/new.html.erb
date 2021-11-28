@@ -9,4 +9,9 @@
     </div>
 </header>
 <main>
+    <%= form_for( @reservations , ) do |f| %>
+        <%= f.hidden_field :movie_id, :value => @movie_id %>
+        <%= f.hidden_field :schedule_id, :value => @schedule_id %>
+        
+    <% end %>
 </main>
