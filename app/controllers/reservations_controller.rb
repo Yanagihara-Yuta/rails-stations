@@ -1,4 +1,8 @@
 class ReservationsController < ApplicationController
+    def index
+        
+    end
+
     def new
         @movie_id = params[:movie_id]
         @schedule_id = params[:schedule_id]

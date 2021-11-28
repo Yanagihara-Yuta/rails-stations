@@ -12,13 +12,13 @@
     <% if @schedule == nil %>
         <p>nil.</p>
     <% else %>
-            <%= form_tag("/movies/:movie_id/schedules/:schedule_id/reservations/new",:method => 'get') do %>
+            <%= form_tag({ :controller => 'reservations', :action => 'index' },{ :method => :get}) do %>
                 <select name="start_time">
                     <% @schedule.each do | schedule | %>
                         <option value="<%= schedule.start_time %>"><%= schedule.start_time %></option>
                     <% end %>
                 </select>
-                <%= submit_tag '座席を予約する', :name => nil %>
+                <%= submit_tag '座席を予約する' %>
             <% end %>
         <%
 =begin%>
