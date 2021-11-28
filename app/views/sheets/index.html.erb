@@ -22,7 +22,7 @@
             <% @sheet_select_row = Sheet.where(row: row) %>
             <% @sheet_select_row.each do | sheet | %>
             <th>
-                <%= link_to("/movies/#{@movie_id}/schedules/#{@schedule_id}/reservations/new") do %>
+                <%= link_to("/movies/#{@movie_id}/schedules/#{@schedule_id}/reservations/new/#{sheet.row}#{sheet.column}/") do %>
                     <%= sheet.row %>-<%= sheet.column %></th>
                 <% end %> 
             <% end %> 

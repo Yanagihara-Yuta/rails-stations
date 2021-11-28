@@ -9,9 +9,14 @@
     </div>
 </header>
 <main>
+    <div class="content">
     <%= form_for( @reservations ,url: {action: 'create'} ) do |f| %>
         <%= f.hidden_field :movie_id, :value => @movie_id %>
+        <%= f.hidden_field :sheet, :value => @schedule_id %>
         <%= f.hidden_field :schedule_id, :value => @schedule_id %>
-        
+        <%= f.text_field :name  %>
+        <%= f.text_field :email  %>
+        <%= f.submit "座席を予約する" %>
     <% end %>
+    </div>
 </main>
