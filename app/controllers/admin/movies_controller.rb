@@ -120,7 +120,7 @@ class Admin::MoviesController < ApplicationController
     def id_saerch
         if Movie.find_by(id: params[:id]) == nil
             redirect_to admin_movies_path , status:200
-            exit
+            
         else
             @movie = Movie.find(params[:id])
         end

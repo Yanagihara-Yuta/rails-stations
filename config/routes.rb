@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end
     resources :schedules, only: [ :edit, :update,:destroy, ]
     get "/movies/:movie_id/schedules/:schedule_id/sheets" => "sheets#index"
-    get "/movies/:movie_id/schedules/:schedule_id/reservations/new/:sheet" => "reservations#new"
+    get "/movies/:movie_id/schedules/:schedule_id/reservations/new" => "reservations#new"
     post "reservations" => "reservations#create"
     get "/movies/:movie_id/schedules" => "movies#show"
     get "/movies" => "movies#index"
