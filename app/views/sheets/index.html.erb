@@ -16,14 +16,19 @@
         </tr>
         <% for i in 0..@row.length do %>
             <tr>
-            <%= @row[i] %>
+            <%= @date %>
 
             <% row = @row[i] %>
             <% @sheet_select_row = Sheet.where(row: row) %>
             <% @sheet_select_row.each do | sheet | %>
-            <th>
-                <%= link_to("/movies/#{@movie_id}/schedules/#{@schedule_id}/reservations/new/?sheet_id=#{sheet.id}&date=#{@date}") do %>
-                    <%= sheet.row %>-<%= sheet.column %></th>
+                <% if Reservation.where(date: @date).where(sheet_id: sheet.id).where(schedule_id: @schedule_id).blank? %>
+                <th>
+                    <%= link_to("/movies/#{@movie_id}/schedules/#{@schedule_id}/reservations/new/?sheet_id=#{sheet.id}&date=#{@date}") do %>
+                        <%= sheet.row %>-<%= sheet.column %>
+                    <% end %> 
+                </th>
+                <% else %>
+                    <th><%= sheet.row %>-<%= sheet.column %></th>
                 <% end %> 
             <% end %> 
             </tr>
