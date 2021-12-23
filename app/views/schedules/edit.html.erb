@@ -5,8 +5,8 @@
 <div class="content">
     <%= form_for(@schedule,url: { action: 'update'}) do |f| %>
         <%= f.hidden_field :updated_at, :value => Time.zone.now() %>
-        開始時間：<%= f.datetime_select :start_time , {use_month_numbers: true} , :value => @schedule.start_time %><br>
-        終了時間：<%= f.datetime_select :end_time , {use_month_numbers: true} , :value => @schedule.end_time %><br>
+        開始時間：<%= f.time_select :start_time , :value => @schedule.start_time %><br>
+        終了時間：<%= f.time_select :end_time , :value => @schedule.end_time %><br>
         <%= f.submit "変更" %>
     <% end %>
 </div>

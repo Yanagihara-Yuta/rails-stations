@@ -1,7 +1,7 @@
 <main>
     <table>
         <tr>
-            <th></th>
+            <th><%= @da %></th>
             <th></th>
             <th>スクリーン</th>
             <th></th>
@@ -21,7 +21,7 @@
             <% @sheet_select_row = Sheet.where(row: row) %>
             <% @sheet_select_row.each do | sheet | %>
             <th>
-                <%= link_to("/movies/#{@movie_id}/schedules/#{@schedule_id}/reservations/new?day=#{@day}&sheet_id=#{sheet.id}") do %>
+                <%= link_to("/movies/#{@movie_id}/schedules/#{@schedule_id}/reservations/new?date=#{@date}&sheet_id=#{sheet.id}") do %>
                 <%= sheet.row %>-<%= sheet.column %>
 
                 <% end %>

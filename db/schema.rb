@@ -23,18 +23,12 @@ ActiveRecord::Schema.define(version: 2021_11_22_140021) do
     t.index ["name"], name: "name_UNIQUE", unique: true
   end
 
-  create_table "reservations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "schedules", id: :integer, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "schedules", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "movie_id", null: false
     t.time "start_time", null: false
     t.time "end_time", null: false
-    t.datetime "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
-    t.datetime "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
-    t.index ["movie_id"], name: "movie_id_idx"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "sheets", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -42,5 +36,4 @@ ActiveRecord::Schema.define(version: 2021_11_22_140021) do
     t.string "row", limit: 1, null: false
   end
 
-  add_foreign_key "schedules", "movies", name: "movie_id"
 end

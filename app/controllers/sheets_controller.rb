@@ -3,7 +3,7 @@ class SheetsController < ApplicationController
         @movie_id = params[:movie_id]
         @schedule_id = params[:schedule_id]
         @time = params[:start_time]
-        @day = params[:day]
+        @date = params[:date]
         @sheets = Sheet.all
         @column = 5
         @row = ["a","b","c"]

@@ -1,13 +1,15 @@
 <header>
 <h2><%= @movie.name %>の上映時間追加</h2>
-<h2>a</h2>
+    <div class="show-header-image">
+        <img src="<%= @movie.image_url %>">
+    </div>
 <%= link_to 'Back', "/admin/movies" %>
 </header>
 <div class="content">
     <%= form_for([:admin, @schedule],url: {action: 'schedule_new'}) do |f| %>
         <%= f.hidden_field :movie_id , :value => params[:id] %>
-        開始時間：<%= f.datetime_select :start_time , {use_month_numbers: true} %><br>
-        終了時間：<%= f.datetime_select :end_time , {use_month_numbers: true} %><br>
+        開始時間：<%= f.time_select :start_time %><br>
+        終了時間：<%= f.time_select :end_time %><br>
         <%= f.submit "追加" %>
     <% end %>
 </div>

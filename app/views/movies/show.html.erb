@@ -12,25 +12,26 @@
     <% if @schedule == nil %>
         <p>nil.</p>
     <% else %>
-            <%
-=begin%>
- <%= form_tag("/movies/#{@movies.id}/schedules/:schedule_id/reservations/new",:method => 'get') do %>
+form_tag不要=>selectのvalueを取得
+ 
+            <%= form_tag("/movies/#{@movies.id}/schedules/#{params[:id]}/sheets?date=aaa",:method => 'get') do %>
                 <select name="start_time">
                     <% @schedule.each do | schedule | %>
-                        <option value="<%= schedule.start_time %>"><%= schedule.start_time %></option>
+                        <option value="<%= schedule.id %>"><%= schedule.start_time %></option>
                     <% end %>
                 </select>
-                <%= submit_tag '座席を予約する', :name => nil %>
                 <button>座席を予約する</button>
-            <% end %> 
-<%
-=end%>
- <% @schedule.each do | schedule | %>
-            <%= link_to("/movies/#{@movies.id}/schedules/#{schedule.id}/sheets?day=#{Date.today}",start_time:schedule.start_time) do %>
+            <% end %>  
+js使ってもよき
+path形式でvalueをインスタンス変数に
+form_withの方が良い?
+
+<% @schedule.each do | schedule | %>
+            <%= link_to("/movies/#{@movies.id}/schedules/#{schedule.id}/sheets?date=#{Date.today}") do %>
                 <div>
-                    <p>上映開始：<%= schedule.start_time %></p><br>
-                    <p>上映終了：<%= schedule.end_time %></p>
-                    予約する
+                    <p>上映開始：<%= schedule.start_time.strftime( "%H:%M" ) %></p><br>
+                    <p>上映終了：<%= schedule.end_time.strftime( "%H:%M" ) %></p>
+                    座席を予約する
                 </div>
             <% end %>
         <% end %> 

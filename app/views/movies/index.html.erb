@@ -30,7 +30,7 @@
                     <img src="<%= movie.image_url %>" class="movie-img">
                     <p class="movie-name">作品名：<%= movie.name %></p>
                     <p class="movie-year">公開年：<%= movie.year %>年</p>
-                    <%= link_to("/movies/#{movie.id}/schedules") do %>
+                    <%= link_to("/movies/#{movie.id}") do %>
                         <div class="movies-reserve">
                             <p>予約/詳細</p>
                         </div>

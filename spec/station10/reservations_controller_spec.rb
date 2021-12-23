@@ -16,7 +16,7 @@ RSpec.describe ReservationsController, type: :controller do
 
     it 'date, sheet_idのどちらかまたは両方が渡されていないとき200を返していないこと' do
       failure_request
-      expect(response).not_to have_http_status(200)
+      expect(response).not_to have_http_status(404)
     end
 
     it 'form送信時にmovie_id, schedule_id, sheet_id, name, emailのすべてを送信するようになっていること' do

@@ -65,11 +65,10 @@
             </tr>
                 <% @schedules.each do | schedule | %>
                     <tr>
-                        <th colspan="3"><%= schedule.start_time %></th>
-                        <th colspan="3"><%= schedule.end_time %></th>
+                        <th colspan="3"><%= schedule.start_time.strftime( "%H:%M" ) %></th>
+                        <th colspan="3"><%= schedule.end_time.strftime( "%H:%M" ) %></th>
                         <th colspan="2"><%= link_to "上映時間変更" , "/schedules/#{schedule.id}/edit" %></th>
                         <th colspan="2"><%= link_to "上映取消" , "/schedules/#{schedule.id}" ,method: :delete%></th>
-
                     </tr>
                 <% end %>
 
